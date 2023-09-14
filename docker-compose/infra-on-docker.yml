@@ -1,0 +1,43 @@
+# docker-compose -f infra-on-docker.yml up -d --build
+# docker-compose -f infra-on-docker.yml down --remove-orphans
+
+version: '3.7'
+
+services:
+
+  crud-db:
+    image: postgres:14.2-alpine
+    hostname: crud
+    container_name: crud
+    restart: always
+    networks:
+      - crud-net
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_MULTIPLE_DATABASES: '"crud"'
+    ports:
+      - 5432:5432
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  pgAdmin:
+    image: dpage/pgadmin4:6.14
+    hostname: crud-pgAdminhn
+    container_name: crud-pgAdmincn
+    restart: always
+    networks:
+      - crud-net
+    depends_on:
+      - crud-db
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@crud.com
+      PGADMIN_DEFAULT_PASSWORD: pass
+      PGADMIN_DISABLE_POSTFIX: "true"
+    ports:
+      - 9046:80
+      - 9047:443
+
+networks:
+  crud-net:
+    driver: bridge
