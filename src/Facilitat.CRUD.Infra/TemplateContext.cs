@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using Dapper;
-using Facilitat.CRUD.API;
+using Facilitat.CRUD.Domain.Aggregates.Template.Entities;
 using Microsoft.Extensions.Configuration;
 
 namespace Facilitat.CRUD.Infra

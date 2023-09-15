@@ -10,4 +10,7 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Facilitat.CRUD.Domain\Facilitat.CRUD.Domain.csproj" />
+  </ItemGroup>
 </Project>

@@ -9,4 +9,12 @@
   </ItemGroup>
 
 
+  <ItemGroup>
+    <ProjectReference Include="..\Facilitat.CRUD.Infra\Facilitat.CRUD.Infra.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\Facilitat.CRUD.Application\Facilitat.CRUD.Application.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

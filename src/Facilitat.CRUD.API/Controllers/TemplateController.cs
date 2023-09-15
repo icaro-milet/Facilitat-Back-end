@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Threading.Tasks;
 using Facilitat.CRUD.Infra;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,12 +16,9 @@ namespace Facilitat.CRUD.API.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Template> GetTemplates()
+        public async Task<IActionResult> GetAllTemplates()
         {
-            return new List<Template>()
-            {
-                
-            };
+            return Ok();
         }
     }
 }
