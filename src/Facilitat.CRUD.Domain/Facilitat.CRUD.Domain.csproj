@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Aggregates\" />
+    <None Remove="Aggregates\Template\" />
+    <None Remove="Aggregates\Template\Entities\" />
+    <None Remove="Aggregates\Template\Services\" />
+    <None Remove="Aggregates\Template\Interfaces\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Aggregates\" />
+    <Folder Include="Aggregates\Template\" />
+    <Folder Include="Aggregates\Template\Entities\" />
+    <Folder Include="Aggregates\Template\Services\" />
+    <Folder Include="Aggregates\Template\Interfaces\" />
+  </ItemGroup>
+</Project>
