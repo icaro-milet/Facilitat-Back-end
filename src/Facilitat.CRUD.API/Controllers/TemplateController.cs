@@ -1,24 +1,30 @@
-﻿using System.Threading.Tasks;
-using Facilitat.CRUD.Infra;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Facilitat.CRUD.Application.Dtos;
+using Facilitat.CRUD.Application.Interfaces.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Facilitat.CRUD.API.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class TemplateController : ControllerBase
+    [Controller]
+    [Route("[controller]/")]
+    public class TemplateController : Controller
     {
-        private readonly TemplateContext _templateContext;
+        private readonly ITemplateAppService _templateAppService;
 
-        public TemplateController(TemplateContext templateContext)
+        public TemplateController(ITemplateAppService templateAppService)
         {
-            _templateContext = templateContext;
+            _templateAppService = templateAppService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAllTemplates()
+        [HttpGet("GetAllTemplatesAsync")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IEnumerable<TemplateDto>> GetAllTemplatesAsync()
         {
-            return Ok();
+            return await _templateAppService.GetAllTemplatesAsync();
         }
     }
 }
