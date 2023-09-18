@@ -7,6 +7,7 @@ namespace Facilitat.CRUD.Application.Interfaces.Services
     public interface ITemplateAppService
 	{
         Task<IEnumerable<TemplateDto>> GetAllTemplatesAsync();
+        Task<TemplateDto> InsertTemplateAsync(TemplateDto templateDto);
     }
 }
 

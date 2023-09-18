@@ -26,6 +26,16 @@ namespace Facilitat.CRUD.API.Controllers
         {
             return await _templateAppService.GetAllTemplatesAsync();
         }
+
+        [HttpPost("CreateTemplate")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> CreateTemplate([FromBody] TemplateDto templateDto)
+        {
+            var item = await _templateAppService.InsertTemplateAsync(templateDto);
+            return Ok();
+        }
     }
 }
 

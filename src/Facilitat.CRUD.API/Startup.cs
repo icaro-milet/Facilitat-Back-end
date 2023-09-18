@@ -1,11 +1,9 @@
 ﻿using System.Data;
-using System.Data.SqlClient;
 using Facilitat.CRUD.Application.AppServices;
 using Facilitat.CRUD.Application.Interfaces.Services;
 using Facilitat.CRUD.Domain.Aggregates.Template.Interfaces.Repository;
 using Facilitat.CRUD.Domain.Aggregates.Template.Interfaces.Services;
 using Facilitat.CRUD.Domain.Aggregates.Template.Services;
-using Facilitat.CRUD.Infra;
 using Facilitat.CRUD.Infra.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,9 +31,11 @@ namespace Facilitat.CRUD.API
             services.AddTransient<ITemplateAppService, TemplateAppService>();
             services.AddTransient<ITemplateService, TemplateService>();
             services.AddTransient<ITemplateRepository, TemplateRepository>();
-
             services.AddTransient<IDbConnection>(db => new NpgsqlConnection(Configuration.GetConnectionString("DefaultConnection")));
-
+            services.Configure<StaticFileOptions>(options =>
+            {
+                options.DefaultContentType = "application/javascript";
+            });
 
             services.AddSwaggerGen();
         }
@@ -48,6 +48,8 @@ namespace Facilitat.CRUD.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -56,19 +58,18 @@ namespace Facilitat.CRUD.API
 
             app.UseCors(builder =>
             {
-                builder.WithOrigins("https://localhost:5001")
+                builder.WithOrigins("https://localhost:5001", "http://localhost:8080")
                        .AllowAnyMethod()
                        .AllowAnyHeader();
             });
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action}/{id?}");
             });
-
-            
 
             app.UseSwagger();
 

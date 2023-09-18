@@ -1,9 +1,8 @@
-﻿using System;
-using Facilitat.CRUD.Domain.Aggregates.Template.Entities;
+﻿using Facilitat.CRUD.Domain.Aggregates.Template.Entities;
 
 namespace Facilitat.CRUD.Application.Dtos
 {
-	public class TemplateDto
+    public class TemplateDto
 	{
         public TemplateDto(int id, string username, string email)
         {

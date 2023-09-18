@@ -6,6 +6,7 @@ namespace Facilitat.CRUD.Domain.Aggregates.Template.Interfaces.Repository
     public interface ITemplateRepository
 	{
         Task<IEnumerable<Entities.Template>> GetAllAsync();
+        Task<Entities.Template> InsertTemplateAsync(Entities.Template template);
     }
 }
 

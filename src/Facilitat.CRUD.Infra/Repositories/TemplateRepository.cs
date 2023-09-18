@@ -32,6 +32,17 @@ namespace Facilitat.CRUD.Infra.Repositories
             }
 
         }
+
+        public async Task<Template> InsertTemplateAsync(Template template)
+        {
+            using (var connection =
+                    new NpgsqlConnection("User ID=user;Password=pass;Host=localhost;Port=5432;Database=poc-crud;"))
+            {
+                var query = connection.Query<Template>("INSERT INTO templates (username, email) " +
+                    $"VALUES ('{template.Username}', '{template.Email}')");
+                return template;
+            }
+        }
     }
 }
 
