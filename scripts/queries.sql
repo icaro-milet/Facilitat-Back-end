@@ -8,3 +8,4 @@ INNER JOIN templates AS tem
 ON tem.username = ans.username 
 INNER JOIN service_orders AS so
 ON so.code = ans.service_order_code
+

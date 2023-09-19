@@ -28,6 +28,9 @@ namespace Facilitat.CRUD.Infra.Repositories
             {
                 List<Template> templates = new List<Template>();
                 templates = connection.Query<Template>("SELECT * FROM templates").ToList();
+
+                await connection.CloseAsync();
+
                 return templates;
             }
 
@@ -38,8 +41,11 @@ namespace Facilitat.CRUD.Infra.Repositories
             using (var connection =
                     new NpgsqlConnection("User ID=user;Password=pass;Host=localhost;Port=5432;Database=poc-crud;"))
             {
-                return connection.Query<Template>(
+                var template = connection.Query<Template>(
                     $"SELECT * FROM templates WHERE id = {templateId}").FirstOrDefault();
+
+                await connection.CloseAsync();
+                return template;
             }
         }
 
@@ -50,6 +56,8 @@ namespace Facilitat.CRUD.Infra.Repositories
             {
                 var query = connection.Query<Template>("INSERT INTO templates (username, email) " +
                     $"VALUES ('{template.Username}', '{template.Email}')");
+
+                await connection.CloseAsync();
                 return template;
             }
         }
@@ -63,6 +71,7 @@ namespace Facilitat.CRUD.Infra.Repositories
                 var query = connection.Execute("UPDATE templates " +
                     $"SET username = '{template.Username}', email = '{template.Email}' WHERE id = {templateId}");
 
+                await connection.CloseAsync();
                 return template;
             }
         }
