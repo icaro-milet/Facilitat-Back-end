@@ -9,12 +9,16 @@
     <None Remove="AppServices\" />
     <None Remove="Interfaces\" />
     <None Remove="Interfaces\Services\" />
+    <None Remove="Sharing\" />
+    <None Remove="Sharing\Factories\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dtos\" />
     <Folder Include="AppServices\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Interfaces\Services\" />
+    <Folder Include="Sharing\" />
+    <Folder Include="Sharing\Factories\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Facilitat.CRUD.Domain\Facilitat.CRUD.Domain.csproj" />

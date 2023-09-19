@@ -33,6 +33,16 @@ namespace Facilitat.CRUD.Infra.Repositories
 
         }
 
+        public async Task<Template> GetByIdTemplateAsync(int templateId)
+        {
+            using (var connection =
+                    new NpgsqlConnection("User ID=user;Password=pass;Host=localhost;Port=5432;Database=poc-crud;"))
+            {
+                return connection.Query<Template>(
+                    $"SELECT * FROM templates WHERE id = {templateId}").FirstOrDefault();
+            }
+        }
+
         public async Task<Template> InsertTemplateAsync(Template template)
         {
             using (var connection =
@@ -40,6 +50,19 @@ namespace Facilitat.CRUD.Infra.Repositories
             {
                 var query = connection.Query<Template>("INSERT INTO templates (username, email) " +
                     $"VALUES ('{template.Username}', '{template.Email}')");
+                return template;
+            }
+        }
+
+        public async Task<Template> UpdateTemplateAsync(int templateId, Template template)
+        {
+            using (var connection =
+                    new NpgsqlConnection("User ID=user;Password=pass;Host=localhost;Port=5432;Database=poc-crud;"))
+            {
+
+                var query = connection.Execute("UPDATE templates " +
+                    $"SET username = '{template.Username}', email = '{template.Email}' WHERE id = {templateId}");
+
                 return template;
             }
         }

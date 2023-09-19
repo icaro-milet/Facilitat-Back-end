@@ -1,5 +1,4 @@
-﻿using System;
-namespace Facilitat.CRUD.Domain.Aggregates.Template.Entities
+﻿namespace Facilitat.CRUD.Domain.Aggregates.Template.Entities
 {
     public class Template
     {

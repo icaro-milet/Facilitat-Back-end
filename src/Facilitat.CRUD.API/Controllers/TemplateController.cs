@@ -18,7 +18,7 @@ namespace Facilitat.CRUD.API.Controllers
             _templateAppService = templateAppService;
         }
 
-        [HttpGet("GetAllTemplatesAsync")]
+        [HttpGet("GetAllTemplates")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -27,14 +27,33 @@ namespace Facilitat.CRUD.API.Controllers
             return await _templateAppService.GetAllTemplatesAsync();
         }
 
+        [HttpGet("GetByIdTemplate/{templateId}")]
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(IEnumerable<TemplateDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<TemplateDto> GetByIdTemplateAsync(int templateId)
+        {
+            return await _templateAppService.GetByIdTemplateAsync(templateId);
+        }
+
         [HttpPost("CreateTemplate")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> CreateTemplate([FromBody] TemplateDto templateDto)
+        public async Task<TemplateDto> CreateTemplate([FromBody] TemplateDto templateDto)
         {
-            var item = await _templateAppService.InsertTemplateAsync(templateDto);
-            return Ok();
+            return await _templateAppService.InsertTemplateAsync(templateDto);
+        }
+
+        [HttpPut("UpdateTemplate/{templateId}")]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<TemplateDto> UpdateTemplateAsync(int templateId, [FromBody] TemplateDto templateDto)
+        {
+            return await _templateAppService.UpdateTemplateAsync(templateId, templateDto);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Facilitat.CRUD.Application.Dtos;
 using Facilitat.CRUD.Application.Interfaces.Services;
+using Facilitat.CRUD.Application.Sharing.Factories;
 using Facilitat.CRUD.Domain.Aggregates.Template.Entities;
 using Facilitat.CRUD.Domain.Aggregates.Template.Interfaces.Services;
 
@@ -32,22 +33,33 @@ namespace Facilitat.CRUD.Application.AppServices
             return templateDto;
         }
 
+        public async Task<TemplateDto> GetByIdTemplateAsync(int templateDtoId)
+        {
+			Template template = await _templateService.GetByIdTemplateAsync(templateDtoId);
+
+			TemplateDto templateDto = TemplateFactory.MakeTemplateToTemplateDto(template);
+
+            return templateDto;
+        }
+
         public async Task<TemplateDto> InsertTemplateAsync(TemplateDto templateDto)
         {
-            Template template = new Template()
-			{
-				Id = templateDto.Id,
-				Username = templateDto.Username,
-				Email = templateDto.Email
-			};
+			var template = TemplateFactory.MakeTemplateDtoToTemplate(templateDto);
 
-			var teste = await _templateService.InsertTemplateAsync(template);
+            await _templateService.InsertTemplateAsync(template);
 
-			{
-				templateDto.Id = teste.Id;
-				templateDto.Username = teste.Username;
-				templateDto.Email = teste.Email;
-			}
+			templateDto = TemplateFactory.MakeTemplateToTemplateDto(template);
+
+            return templateDto;
+        }
+
+        public async Task<TemplateDto> UpdateTemplateAsync(int templateId, TemplateDto templateDto)
+        {
+			var template = TemplateFactory.MakeTemplateDtoToTemplate(templateDto);
+
+			await _templateService.UpdateTemplateAsync(templateId, template);
+
+            templateDto = TemplateFactory.MakeTemplateToTemplateDto(template);
 
 			return templateDto;
         }
