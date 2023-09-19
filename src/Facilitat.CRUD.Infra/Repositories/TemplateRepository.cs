@@ -20,7 +20,6 @@ namespace Facilitat.CRUD.Infra.Repositories
             _connectionString = _config.GetConnectionString("DefaultConnection");
         }
 
-
         public async Task<IEnumerable<Template>> GetAllAsync()
         {
             using (var connection =
@@ -73,6 +72,20 @@ namespace Facilitat.CRUD.Infra.Repositories
 
                 await connection.CloseAsync();
                 return template;
+            }
+        }
+
+        public async Task<bool> DeleteTemplateAsync(int templateId)
+        {
+            using (var connection =
+                    new NpgsqlConnection("User ID=user;Password=pass;Host=localhost;Port=5432;Database=poc-crud;"))
+            {
+
+                var query = connection.Execute("DELETE FROM templates " +
+                    $"WHERE id = {templateId}");
+
+                await connection.CloseAsync();
+                return true;
             }
         }
     }

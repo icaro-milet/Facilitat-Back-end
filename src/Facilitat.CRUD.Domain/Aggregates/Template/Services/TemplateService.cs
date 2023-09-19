@@ -46,6 +46,18 @@ namespace Facilitat.CRUD.Domain.Aggregates.Template.Services
 
             return await item;
         }
+
+        public async Task<bool> DeleteTemplateAsync(int templateId)
+        {
+            var entity = await _templateRepository.GetByIdTemplateAsync(templateId);
+
+            if (entity == null)
+                return false;
+
+            await _templateRepository.DeleteTemplateAsync(templateId);
+            return true;
+
+        }
     }
 }
 

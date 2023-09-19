@@ -10,6 +10,7 @@ namespace Facilitat.CRUD.Application.Interfaces.Services
         Task<TemplateDto> GetByIdTemplateAsync(int templateDtoId);
         Task<TemplateDto> InsertTemplateAsync(TemplateDto templateDto);
         Task<TemplateDto> UpdateTemplateAsync(int templateId, TemplateDto templateDto);
+        Task<bool> DeleteTemplateAsync(int templateDtoId);
     }
 }
 

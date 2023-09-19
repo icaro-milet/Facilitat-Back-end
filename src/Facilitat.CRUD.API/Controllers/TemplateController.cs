@@ -55,6 +55,15 @@ namespace Facilitat.CRUD.API.Controllers
         {
             return await _templateAppService.UpdateTemplateAsync(templateId, templateDto);
         }
+
+        [HttpDelete("DeleteTemplate/{templateId}")]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<bool> DeleteTemplateAsync(int templateId)
+        {
+            return await _templateAppService.DeleteTemplateAsync(templateId);
+        }
     }
 }
 

@@ -18,7 +18,7 @@ namespace Facilitat.CRUD.Application.AppServices
 			_templateService = templateService;
         }
 
-		public async Task<IEnumerable<TemplateDto>> GetAllTemplatesAsync()
+        public async Task<IEnumerable<TemplateDto>> GetAllTemplatesAsync()
 		{
 			var template = await _templateService.GetAllTemplatesAsync();
 
@@ -62,6 +62,12 @@ namespace Facilitat.CRUD.Application.AppServices
             templateDto = TemplateFactory.MakeTemplateToTemplateDto(template);
 
 			return templateDto;
+        }
+
+
+        public async Task<bool> DeleteTemplateAsync(int templateDtoId)
+        {
+            return await _templateService.DeleteTemplateAsync(templateDtoId);
         }
     }
 }
