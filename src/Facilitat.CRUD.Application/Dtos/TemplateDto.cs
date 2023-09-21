@@ -13,6 +13,7 @@ namespace Facilitat.CRUD.Application.Dtos
 
         public TemplateDto() { }
 
+        [JsonIgnore]
         public int Id { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }

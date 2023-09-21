@@ -9,3 +9,7 @@ ON tem.username = ans.username
 INNER JOIN service_orders AS so
 ON so.code = ans.service_order_code
 
+INSERT INTO service_orders (template_id, code, description) VALUES
+    (1, 5432, 'Garantia de máquina'),
+    (1, 5433, 'Garantia de eletrônico'),
+	(1, 5434, 'Garantia de celular');
