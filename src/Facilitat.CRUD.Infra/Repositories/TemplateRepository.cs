@@ -53,8 +53,8 @@ namespace Facilitat.CRUD.Infra.Repositories
             using (var connection =
                     new NpgsqlConnection("User ID=user;Password=pass;Host=localhost;Port=5432;Database=poc-crud;"))
             {
-                var query = connection.Query<Template>("INSERT INTO templates (username, email) " +
-                    $"VALUES ('{template.Username}', '{template.Email}')");
+                var query = connection.Query<Template>("INSERT INTO templates (name) " +
+                    $"VALUES ('{template.Name}')");
 
                 await connection.CloseAsync();
                 return template;
@@ -68,7 +68,7 @@ namespace Facilitat.CRUD.Infra.Repositories
             {
 
                 var query = connection.Execute("UPDATE templates " +
-                    $"SET username = '{template.Username}', email = '{template.Email}' WHERE id = {templateId}");
+                    $"SET name = '{template.Name}' WHERE id = {templateId}");
 
                 await connection.CloseAsync();
                 return template;

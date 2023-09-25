@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
-using Facilitat.CRUD.Domain.Aggregates.Template.Entities;
-using Facilitat.CRUD.Domain.Aggregates.Template.Interfaces.Repository;
+using Facilitat.CRUD.Domain.Aggregates.ServiceOrder.Entities;
+using Facilitat.CRUD.Domain.Aggregates.ServiceOrder.Interfaces.Repository;
 using Npgsql;
 
 namespace Facilitat.CRUD.Infra.Repositories

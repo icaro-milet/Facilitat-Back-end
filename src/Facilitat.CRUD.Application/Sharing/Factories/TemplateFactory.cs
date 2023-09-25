@@ -10,8 +10,7 @@ namespace Facilitat.CRUD.Application.Sharing.Factories
             Template template = new Template()
             {
                 Id = templateDto.Id,
-                Username = templateDto.Username,
-                Email = templateDto.Email
+                Name = templateDto.Name
             };
 
             return template;
@@ -22,8 +21,7 @@ namespace Facilitat.CRUD.Application.Sharing.Factories
             TemplateDto templateDto = new TemplateDto()
             {
                 Id = template.Id,
-                Username = template.Username,
-                Email = template.Email
+                Name = template.Name
             };
 
             return templateDto;

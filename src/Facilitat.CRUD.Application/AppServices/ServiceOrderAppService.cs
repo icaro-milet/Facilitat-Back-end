@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Facilitat.CRUD.Application.Dtos;
 using Facilitat.CRUD.Application.Interfaces.Services;
-using Facilitat.CRUD.Domain.Aggregates.Template.Interfaces.Services;
+using Facilitat.CRUD.Domain.Aggregates.ServiceOrder.Interfaces.Services;
 
 namespace Facilitat.CRUD.Application.AppServices
 {

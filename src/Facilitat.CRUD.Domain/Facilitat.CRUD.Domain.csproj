@@ -12,6 +12,18 @@
     <None Remove="Aggregates\Template\Interfaces\" />
     <None Remove="Aggregates\Template\Interfaces\Repository\" />
     <None Remove="Aggregates\Template\Interfaces\Services\" />
+    <None Remove="Aggregates\ServiceOrder\" />
+    <None Remove="Aggregates\ServiceOrder\Entities\" />
+    <None Remove="Aggregates\ServiceOrder\Interfaces\" />
+    <None Remove="Aggregates\ServiceOrder\Services\" />
+    <None Remove="Aggregates\ServiceOrder\Interfaces\Repository\" />
+    <None Remove="Aggregates\ServiceOrder\Interfaces\Services\" />
+    <None Remove="Aggregates\Answer\" />
+    <None Remove="Aggregates\Answer\Entities\" />
+    <None Remove="Aggregates\Answer\Interfaces\" />
+    <None Remove="Aggregates\Answer\Services\" />
+    <None Remove="Aggregates\Answer\Interfaces\Repository\" />
+    <None Remove="Aggregates\Answer\Interfaces\Services\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Aggregates\" />
@@ -21,5 +33,17 @@
     <Folder Include="Aggregates\Template\Interfaces\" />
     <Folder Include="Aggregates\Template\Interfaces\Repository\" />
     <Folder Include="Aggregates\Template\Interfaces\Services\" />
+    <Folder Include="Aggregates\ServiceOrder\" />
+    <Folder Include="Aggregates\ServiceOrder\Entities\" />
+    <Folder Include="Aggregates\ServiceOrder\Interfaces\" />
+    <Folder Include="Aggregates\ServiceOrder\Services\" />
+    <Folder Include="Aggregates\ServiceOrder\Interfaces\Repository\" />
+    <Folder Include="Aggregates\ServiceOrder\Interfaces\Services\" />
+    <Folder Include="Aggregates\Answer\" />
+    <Folder Include="Aggregates\Answer\Entities\" />
+    <Folder Include="Aggregates\Answer\Interfaces\" />
+    <Folder Include="Aggregates\Answer\Services\" />
+    <Folder Include="Aggregates\Answer\Interfaces\Repository\" />
+    <Folder Include="Aggregates\Answer\Interfaces\Services\" />
   </ItemGroup>
 </Project>

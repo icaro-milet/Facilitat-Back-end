@@ -26,8 +26,7 @@ namespace Facilitat.CRUD.Application.AppServices
 				.Select(template => new TemplateDto()
 				{
 					Id = template.Id,
-					Email = template.Email,
-					Username = template.Username
+					Name = template.Name
 				});
 			
             return templateDto;

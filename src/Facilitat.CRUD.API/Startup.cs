@@ -1,6 +1,12 @@
 ﻿using System.Data;
 using Facilitat.CRUD.Application.AppServices;
 using Facilitat.CRUD.Application.Interfaces.Services;
+using Facilitat.CRUD.Domain.Aggregates.Answer.Interfaces.Repository;
+using Facilitat.CRUD.Domain.Aggregates.Answer.Interfaces.Services;
+using Facilitat.CRUD.Domain.Aggregates.Answer.Services;
+using Facilitat.CRUD.Domain.Aggregates.ServiceOrder.Interfaces.Repository;
+using Facilitat.CRUD.Domain.Aggregates.ServiceOrder.Interfaces.Services;
+using Facilitat.CRUD.Domain.Aggregates.ServiceOrder.Services;
 using Facilitat.CRUD.Domain.Aggregates.Template.Interfaces.Repository;
 using Facilitat.CRUD.Domain.Aggregates.Template.Interfaces.Services;
 using Facilitat.CRUD.Domain.Aggregates.Template.Services;
@@ -34,6 +40,9 @@ namespace Facilitat.CRUD.API
             services.AddTransient<IServiceOrderAppService, ServiceOrderAppService>();
             services.AddTransient<IServiceOrderService, ServiceOrderService>();
             services.AddTransient<IServiceOrderRepository, ServiceOrderRepository>();
+            services.AddTransient<IAnswerAppService, AnswerAppService>();
+            services.AddTransient<IAnswerService, AnswerService>();
+            services.AddTransient<IAnswerRepository, AnswerRepository>();
             services.AddTransient<IDbConnection>(db => new NpgsqlConnection(Configuration.GetConnectionString("DefaultConnection")));
             services.Configure<StaticFileOptions>(options =>
             {

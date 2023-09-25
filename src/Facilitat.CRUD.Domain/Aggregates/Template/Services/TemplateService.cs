@@ -37,8 +37,7 @@ namespace Facilitat.CRUD.Domain.Aggregates.Template.Services
             {
                 var updatedTemplate = new Entities.Template()
                 {
-                    Username = template.Username,
-                    Email = template.Email
+                    Name = template.Name
                 };
 
                 return await _templateRepository.UpdateTemplateAsync(templateId, updatedTemplate);

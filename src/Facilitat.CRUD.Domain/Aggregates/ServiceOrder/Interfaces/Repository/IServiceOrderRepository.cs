@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Facilitat.CRUD.Domain.Aggregates.Template.Interfaces.Services
+namespace Facilitat.CRUD.Domain.Aggregates.ServiceOrder.Interfaces.Repository
 {
-    public interface IServiceOrderService
+    public interface IServiceOrderRepository
 	{
         Task<IEnumerable<Entities.ServiceOrder>> GetAllServiceOrders();
     }

@@ -4,19 +4,17 @@ namespace Facilitat.CRUD.Application.Dtos
 {
     public class TemplateDto
 	{
-        public TemplateDto(int id, string username, string email)
+        public TemplateDto(int id, string name)
         {
             Id = id;
-            Username = username;
-            Email = email;
+            Name = name;
         }
 
         public TemplateDto() { }
 
         [JsonIgnore]
         public int Id { get; set; }
-        public string Username { get; set; }
-        public string Email { get; set; }
+        public string Name { get; set; }
     }
 }
 

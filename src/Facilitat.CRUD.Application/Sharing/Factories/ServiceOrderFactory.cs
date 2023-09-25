@@ -1,5 +1,5 @@
 ﻿using Facilitat.CRUD.Application.Dtos;
-using Facilitat.CRUD.Domain.Aggregates.Template.Entities;
+using Facilitat.CRUD.Domain.Aggregates.ServiceOrder.Entities;
 
 namespace Facilitat.CRUD.Application.Sharing.Factories
 {

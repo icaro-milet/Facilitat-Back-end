@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
-namespace Facilitat.CRUD.Domain.Aggregates.Template.Entities
+namespace Facilitat.CRUD.Domain.Aggregates.ServiceOrder.Entities
 {
     public class ServiceOrder
 	{
+		public ServiceOrder() { }
+
         [JsonIgnore]
         public int Id { get; set; }
 

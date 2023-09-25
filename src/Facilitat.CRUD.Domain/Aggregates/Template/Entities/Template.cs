@@ -6,8 +6,7 @@ namespace Facilitat.CRUD.Domain.Aggregates.Template.Entities
     {
         [JsonIgnore]
         public int Id { get; set; }
-        public string Username { get; set; }
-        public string Email { get; set; }
+        public string Name { get; set; }
     }
 }
 
