@@ -1,38 +1,87 @@
 CREATE TABLE IF NOT EXISTS templates (
     id SERIAL PRIMARY KEY,
-    username VARCHAR(255),
-    email VARCHAR(255)
+    name VARCHAR(255)
 );
 
-INSERT INTO templates (username, email) VALUES
-    ('milet', 'milet@example.com'),
-    ('joao', 'joao@example.com');
+INSERT INTO templates (name) VALUES
+    ('Cadastro de serviço');
+
+---
+
+CREATE TABLE IF NOT EXISTS questions (
+    id SERIAL PRIMARY KEY,
+    template_id INT,
+    question_one_id INT UNIQUE,
+    question_one VARCHAR(255),
+    question_two_id INT UNIQUE,
+    question_two VARCHAR(255),
+    FOREIGN KEY (template_id) REFERENCES templates(id)
+);
+
+INSERT INTO questions 
+(
+    template_id, 
+    question_one_id, 
+    question_one, 
+    question_two_id, 
+    question_two
+) 
+VALUES
+(
+    1, 
+    1, 
+    'Qual o seu nome?',
+    1,
+    'Qual o seu e-mail?'
+);
+
+---
 
 CREATE TABLE IF NOT EXISTS service_orders (
     id SERIAL PRIMARY KEY,
     template_id INT,
-    code INT,
+    code INT UNIQUE,
     description VARCHAR(255),
-    FOREIGN KEY (template_id) REFERENCES templates(id),
-    UNIQUE(code)
+    FOREIGN KEY (template_id) REFERENCES templates(id)
 );
 
 INSERT INTO service_orders (template_id, code, description) VALUES
     (1, 5435, 'Conserto de equipamento');
 
+---
+
 CREATE TABLE IF NOT EXISTS answers (
     id SERIAL PRIMARY KEY,
     template_id INT,
-    service_order_code INT,
-    username VARCHAR(255),
-    email VARCHAR(255),
+    service_order_id INT,
+    question_one_id INT,
+    answer_one VARCHAR(255),
+    question_two_id INT,
+    answer_two VARCHAR(255),
     FOREIGN KEY (template_id) REFERENCES templates(id),
-    FOREIGN KEY (service_order_code) REFERENCES service_orders(code)
+    FOREIGN KEY (service_order_id) REFERENCES service_orders(id),
+    FOREIGN KEY (question_one_id) REFERENCES questions(question_one_id),
+    FOREIGN KEY (question_two_id) REFERENCES questions(question_two_id)
 );
 
-INSERT INTO answers (template_id, username, email) VALUES
-    (1,'milet', 'milet@example.com'),
-    (1,'joao', 'joao@example.com');
+INSERT INTO answers 
+(
+    template_id, 
+    service_order_id,
+    question_one_id,
+    answer_one,
+    question_two_id,
+    answer_two
+) 
+VALUES
+(
+    1,
+    1, 
+    1,
+    'Icaro',
+    1,
+    'icaro@example.com'
+)
 
 
 
