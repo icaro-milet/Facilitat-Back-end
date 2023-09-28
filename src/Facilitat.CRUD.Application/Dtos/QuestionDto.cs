@@ -4,21 +4,18 @@ namespace Facilitat.CRUD.Application.Dtos
 {
     public class QuestionDto
 	{
-        public QuestionDto(
-            int id,
-            int questionOneId,
-            string questionOne,
-            int questionTwoId,
-            string questionTwo)
+
+        public QuestionDto() { }
+
+        public QuestionDto(int id, int templateId, int questionOneId, string questionOne, int questionTwoId, string questionTwo)
         {
             Id = id;
+            TemplateId = templateId;
             QuestionOneId = questionOneId;
             QuestionOne = questionOne;
             QuestionTwoId = questionTwoId;
             QuestionTwo = questionTwo;
         }
-
-        public QuestionDto() { }
 
         [JsonIgnore]
         [JsonPropertyName("id")]

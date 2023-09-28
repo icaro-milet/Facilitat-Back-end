@@ -56,11 +56,14 @@ namespace Facilitat.CRUD.Infra.Repositories
                 var query = connection.Query<Template>("INSERT INTO templates (name) " +
                     $"VALUES ('{template.Name}')");
 
-                var questionsQuery = connection.Query<Template>("INSERT INTO questions \n" +
-                    "(template_id, question_one_id, question_one, question_two_id, question_two) \n" +
+                var templateId = connection.Query<int>(
+                    $"SELECT id FROM templates ORDER BY id DESC").FirstOrDefault();
+
+                var questionsQuery = connection.Query<Question>("INSERT INTO questions \n" +
+                    "(template_id, question_one, question_two) \n" +
                     $"VALUES " +
-                    $"('{template.Id}', {template.Questions.QuestionOneId}, {template.Questions.QuestionOne}," +
-                    $"{template.Questions.QuestionTwoId}, {template.Questions.QuestionTwo})");
+                    $"({templateId}, '{template.Question.QuestionOne}', " +
+                    $"'{template.Question.QuestionTwo}')");
 
                 await connection.CloseAsync();
                 return template;

@@ -3,37 +3,37 @@ CREATE TABLE IF NOT EXISTS templates (
     name VARCHAR(255)
 );
 
-INSERT INTO templates (name) VALUES
-    ('Cadastro de serviço');
+-- INSERT INTO templates (name) VALUES
+--     ('Cadastro de serviço');
 
 ---
 
 CREATE TABLE IF NOT EXISTS questions (
     id SERIAL PRIMARY KEY,
     template_id INT,
-    question_one_id INT UNIQUE,
+    question_one_id SERIAL UNIQUE,
     question_one VARCHAR(255),
-    question_two_id INT UNIQUE,
+    question_two_id SERIAL UNIQUE,
     question_two VARCHAR(255),
     FOREIGN KEY (template_id) REFERENCES templates(id)
 );
 
-INSERT INTO questions 
-(
-    template_id, 
-    question_one_id, 
-    question_one, 
-    question_two_id, 
-    question_two
-) 
-VALUES
-(
-    1, 
-    1, 
-    'Qual o seu nome?',
-    1,
-    'Qual o seu e-mail?'
-);
+-- INSERT INTO questions 
+-- (
+--     template_id, 
+--     question_one_id, 
+--     question_one, 
+--     question_two_id, 
+--     question_two
+-- ) 
+-- VALUES
+-- (
+--     1, 
+--     1, 
+--     'Qual o seu nome?',
+--     1,
+--     'Qual o seu e-mail?'
+-- );
 
 ---
 
@@ -64,25 +64,25 @@ CREATE TABLE IF NOT EXISTS answers (
     FOREIGN KEY (question_two_id) REFERENCES questions(question_two_id)
 );
 
-INSERT INTO answers 
-(
-    template_id, 
-    service_order_id,
-    question_one_id,
-    answer_one,
-    question_two_id,
-    answer_two
-) 
-VALUES
-(
-    1,
-    1, 
-    1,
-    'Icaro',
-    1,
-    'icaro@example.com'
-)
+-- INSERT INTO answers 
+-- (
+--     template_id, 
+--     service_order_id,
+--     question_one_id,
+--     answer_one,
+--     question_two_id,
+--     answer_two
+-- ) 
+-- VALUES
+-- (
+--     1,
+--     1, 
+--     1,
+--     'Icaro',
+--     1,
+--     'icaro@example.com'
+-- )
 
-
+---
 
 
