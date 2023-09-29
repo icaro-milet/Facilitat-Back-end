@@ -62,8 +62,8 @@ namespace Facilitat.CRUD.Infra.Repositories
                 var questionsQuery = connection.Query<Question>("INSERT INTO questions \n" +
                     "(template_id, question_one, question_two) \n" +
                     $"VALUES " +
-                    $"({templateId}, '{template.Question.QuestionOne}', " +
-                    $"'{template.Question.QuestionTwo}')");
+                    $"({templateId}, '{template.Question.question_one}', " +
+                    $"'{template.Question.question_two}')");
 
                 await connection.CloseAsync();
                 return template;

@@ -45,8 +45,8 @@ CREATE TABLE IF NOT EXISTS service_orders (
     FOREIGN KEY (template_id) REFERENCES templates(id)
 );
 
-INSERT INTO service_orders (template_id, code, description) VALUES
-    (1, 5435, 'Conserto de equipamento');
+-- INSERT INTO service_orders (template_id, code, description) VALUES
+--     (1, 5435, 'Conserto de equipamento');
 
 ---
 

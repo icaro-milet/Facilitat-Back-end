@@ -7,37 +7,37 @@ namespace Facilitat.CRUD.Application.Dtos
 
         public QuestionDto() { }
 
-        public QuestionDto(int id, int templateId, int questionOneId, string questionOne, int questionTwoId, string questionTwo)
+        public QuestionDto(
+            int id,
+            int template_id,
+            int question_one_id,
+            string question_one,
+            int question_two_id,
+            string question_two)
         {
-            Id = id;
-            TemplateId = templateId;
-            QuestionOneId = questionOneId;
-            QuestionOne = questionOne;
-            QuestionTwoId = questionTwoId;
-            QuestionTwo = questionTwo;
+            this.id = id;
+            this.template_id = template_id;
+            this.question_one_id = question_one_id;
+            this.question_one = question_one;
+            this.question_two_id = question_two_id;
+            this.question_two = question_two;
         }
 
         [JsonIgnore]
-        [JsonPropertyName("id")]
-        public int Id { get; set; }
+        public int id { get; set; }
 
         [JsonIgnore]
-        [JsonPropertyName("template_id")]
-        public int TemplateId { get; set; }
+        public int template_id { get; set; }
 
         [JsonIgnore]
-        [JsonPropertyName("question_one_id")]
-        public int QuestionOneId { get; set; }
+        public int question_one_id { get; set; }
 
-        [JsonPropertyName("question_one")]
-        public string QuestionOne { get; set; }
+        public string question_one { get; set; }
 
         [JsonIgnore]
-        [JsonPropertyName("question_two_id")]
-        public int QuestionTwoId { get; set; }
+        public int question_two_id { get; set; }
 
-        [JsonPropertyName("question_two")]
-        public string QuestionTwo { get; set; }
+        public string question_two { get; set; }
 
     }
 }

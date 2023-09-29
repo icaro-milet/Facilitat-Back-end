@@ -37,12 +37,19 @@ namespace Facilitat.CRUD.API
             services.AddTransient<ITemplateAppService, TemplateAppService>();
             services.AddTransient<ITemplateService, TemplateService>();
             services.AddTransient<ITemplateRepository, TemplateRepository>();
+
             services.AddTransient<IServiceOrderAppService, ServiceOrderAppService>();
             services.AddTransient<IServiceOrderService, ServiceOrderService>();
             services.AddTransient<IServiceOrderRepository, ServiceOrderRepository>();
+
             services.AddTransient<IAnswerAppService, AnswerAppService>();
             services.AddTransient<IAnswerService, AnswerService>();
             services.AddTransient<IAnswerRepository, AnswerRepository>();
+
+            services.AddTransient<IQuestionAppService, QuestionAppService>();
+            services.AddTransient<IQuestionService, QuestionService>();
+            services.AddTransient<IQuestionRepository, QuestionRepository>();
+
             services.AddTransient<IDbConnection>(db => new NpgsqlConnection(Configuration.GetConnectionString("DefaultConnection")));
             services.Configure<StaticFileOptions>(options =>
             {

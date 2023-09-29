@@ -33,11 +33,7 @@ namespace Facilitat.CRUD.Infra.Repositories
             {
                 List<Answer> answers = new List<Answer>();
                 answers = connection.Query<Answer>("SELECT * \n" +
-                    "FROM answers ans\n" +
-                    "INNER JOIN templates tem\n" +
-                    "ON ans.template_id = tem.id\n" +
-                    "INNER JOIN service_orders so\n" +
-                    "ON ans.service_order_code = so.code").ToList();
+                    "FROM answers").ToList();
 
                 await connection.CloseAsync();
 
