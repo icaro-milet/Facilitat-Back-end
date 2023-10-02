@@ -37,7 +37,7 @@ namespace Facilitat.CRUD.Application.AppServices
                 .Select(serviceOrder => new ServiceOrderDto()
                 {
                     id = serviceOrder.id,
-                    name = serviceOrder.name,
+                    service_order_name = serviceOrder.service_order_name,
                     description = serviceOrder.description
                 });
 

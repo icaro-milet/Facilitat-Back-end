@@ -1,7 +1,6 @@
 CREATE TABLE IF NOT EXISTS templates (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255),
-    UNIQUE(name)
+    name VARCHAR(255)
 );
 
 ---
@@ -20,9 +19,8 @@ CREATE TABLE IF NOT EXISTS questions (
 
 CREATE TABLE IF NOT EXISTS service_orders (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255),
-    description VARCHAR(255),
-    UNIQUE(name)
+    service_order_name VARCHAR(255),
+    description VARCHAR(255)
 );
 
 ---

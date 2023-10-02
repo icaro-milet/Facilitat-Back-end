@@ -9,7 +9,7 @@ namespace Facilitat.CRUD.Domain.Aggregates.ServiceOrder.Entities
         [JsonIgnore]
         public int id { get; set; }
 
-        public string name { get; set; }
+        public string service_order_name { get; set; }
 
         public string description { get; set; }
     }

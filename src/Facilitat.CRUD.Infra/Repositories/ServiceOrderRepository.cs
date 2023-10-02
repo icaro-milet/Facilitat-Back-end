@@ -18,9 +18,9 @@ namespace Facilitat.CRUD.Infra.Repositories
                     new NpgsqlConnection("User ID=user;Password=pass;Host=localhost;Port=5432;Database=poc-crud;"))
             {
                 var query = await connection.ExecuteAsync("INSERT INTO service_orders\n" +
-                    $"(name, description)\n" +
+                    $"(service_order_name, description)\n" +
                     $"VALUES \n" +
-                    $"('{serviceOrder.name}','{serviceOrder.description}')");
+                    $"('{serviceOrder.service_order_name}','{serviceOrder.description}')");
 
                 await connection.CloseAsync();
 
