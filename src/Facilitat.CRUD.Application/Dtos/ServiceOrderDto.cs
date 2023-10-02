@@ -5,24 +5,21 @@ namespace Facilitat.CRUD.Application.Dtos
 {
     public class ServiceOrderDto
 	{
-        public ServiceOrderDto(int id, int templateId, int code, string description)
+        public ServiceOrderDto(int id, string name, string description)
         {
-            Id = id;
-            template_id = templateId;
-            Code = code;
-            Description = description;
+            this.id = id;
+            this.name = name;
+            this.description = description;
         }
 
         public ServiceOrderDto() { }
 
         [JsonIgnore]
-        public int Id { get; set; }
+        public int id { get; set; }
 
-        public int template_id { get; set; }
+        public string name { get; set; }
 
-        public int Code { get; set; }
-
-        public string Description { get; set; }
+        public string description { get; set; }
     }
 }
 

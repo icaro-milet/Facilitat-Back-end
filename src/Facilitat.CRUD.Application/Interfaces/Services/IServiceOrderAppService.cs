@@ -7,6 +7,7 @@ namespace Facilitat.CRUD.Application.Interfaces.Services
     public interface IServiceOrderAppService
 	{
         Task<IEnumerable<ServiceOrderDto>> GetAllServiceOrders();
+        Task<ServiceOrderDto> CreateServiceOrder(ServiceOrderDto serviceOrderDto);
     }
 }
 

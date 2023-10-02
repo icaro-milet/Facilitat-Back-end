@@ -9,10 +9,9 @@ namespace Facilitat.CRUD.Application.Sharing.Factories
 		{
 			return new ServiceOrderDto()
 			{
-				Id = serviceOrder.Id,
-                template_id = serviceOrder.template_id,
-				Code = serviceOrder.Code,
-				Description = serviceOrder.Description
+				id = serviceOrder.id,
+                name = serviceOrder.name,
+                description = serviceOrder.description
 			};
         }
 
@@ -20,10 +19,9 @@ namespace Facilitat.CRUD.Application.Sharing.Factories
         {
             return new ServiceOrder()
             {
-                Id = serviceOrderDto.Id,
-                template_id = serviceOrderDto.template_id,
-                Code = serviceOrderDto.Code,
-                Description = serviceOrderDto.Description
+                id = serviceOrderDto.id,
+                name = serviceOrderDto.name,
+                description = serviceOrderDto.description
             };
         }
     }

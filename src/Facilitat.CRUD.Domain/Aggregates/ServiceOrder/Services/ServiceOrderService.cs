@@ -14,6 +14,11 @@ namespace Facilitat.CRUD.Domain.Aggregates.ServiceOrder.Services
             _serviceOrderRepository = serviceOrderRepository;
         }
 
+        public async Task<Entities.ServiceOrder> CreateServiceOrder(Entities.ServiceOrder serviceOrder)
+        {
+            return await _serviceOrderRepository.CreateServiceOrder(serviceOrder);
+        }
+
         public async Task<IEnumerable<Entities.ServiceOrder>> GetAllServiceOrders()
         {
             return await _serviceOrderRepository.GetAllServiceOrders();

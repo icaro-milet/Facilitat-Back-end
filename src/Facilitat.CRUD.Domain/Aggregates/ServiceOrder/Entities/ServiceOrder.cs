@@ -7,13 +7,11 @@ namespace Facilitat.CRUD.Domain.Aggregates.ServiceOrder.Entities
 		public ServiceOrder() { }
 
         [JsonIgnore]
-        public int Id { get; set; }
+        public int id { get; set; }
 
-        public int template_id { get; set; }
+        public string name { get; set; }
 
-        public int Code { get; set; }
-
-        public string Description { get; set; }
+        public string description { get; set; }
     }
 }
 

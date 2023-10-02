@@ -26,6 +26,15 @@ namespace Facilitat.CRUD.API.Controllers
         {
             return await _serviceOrderAppService.GetAllServiceOrders();
         }
+
+        [HttpPost("CreateServiceOrder")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ServiceOrderDto> CreateServiceOrder([FromBody] ServiceOrderDto serviceOrderDto)
+        {
+            return await _serviceOrderAppService.CreateServiceOrder(serviceOrderDto);
+        }
 	}
 }
 
