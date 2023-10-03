@@ -5,8 +5,8 @@ namespace Facilitat.CRUD.Application.Sharing.Factories
 {
     public static class TemplateFactory
 	{
-		public static Template MakeTemplateDtoToTemplate(TemplateDto templateDto)
-		{
+        public static Template TemplateDtoToTemplate(TemplateDto templateDto)
+        {
             Template template = new Template()
             {
                 Id = templateDto.Id,
@@ -16,13 +16,14 @@ namespace Facilitat.CRUD.Application.Sharing.Factories
                     template_id = templateDto.Id,
                     question_one = templateDto.QuestionDto.question_one,
                     question_two = templateDto.QuestionDto.question_two
-                }
+                },
+                question_id = templateDto.question_id
             };
 
             return template;
         }
 
-        public static TemplateDto MakeTemplateToTemplateDto(Template template)
+        public static TemplateDto TemplateToTemplateDto(Template template)
         {
             TemplateDto templateDto = new TemplateDto()
             {
@@ -33,7 +34,8 @@ namespace Facilitat.CRUD.Application.Sharing.Factories
                     template_id = template.Id,
                     question_one = template.Question.question_one,
                     question_two = template.Question.question_two
-                }
+                },
+                question_id = template.question_id
             };
 
             return templateDto;

@@ -7,7 +7,10 @@ namespace Facilitat.CRUD.Application.Dtos
 	{
         public TemplateDto() { }
 
-        public TemplateDto(int id, string name, QuestionDto questionDto)
+        public TemplateDto(
+            int id,
+            string name,
+            QuestionDto questionDto)
         {
             Id = id;
             Name = name;
@@ -22,6 +25,9 @@ namespace Facilitat.CRUD.Application.Dtos
         [JsonPropertyName("name")]
         [Column("name")]
         public string Name { get; set; }
+
+        [JsonPropertyName("question_id")]
+        public int question_id { get; set; }
 
         [JsonPropertyName("questions")]
         public QuestionDto QuestionDto { get; set; }

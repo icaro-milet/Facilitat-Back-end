@@ -1,6 +1,7 @@
 CREATE TABLE IF NOT EXISTS templates (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255)
+    name VARCHAR(255) UNIQUE,
+    question_id INT
 );
 
 ---
@@ -40,5 +41,9 @@ CREATE TABLE IF NOT EXISTS answers (
 );
 
 ---
+
+ALTER TABLE templates
+ADD CONSTRAINT FK_QuestionId
+FOREIGN KEY (question_id) REFERENCES questions(id);
 
 

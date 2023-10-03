@@ -57,6 +57,11 @@ namespace Facilitat.CRUD.Domain.Aggregates.Template.Services
             return true;
 
         }
+
+        public async Task<Entities.Template> GetByNameTemplateAsync(string templateName)
+        {
+            return await _templateRepository.GetByNameTemplateAsync(templateName);
+        }
     }
 }
 

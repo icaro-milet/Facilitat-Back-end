@@ -65,6 +65,17 @@ namespace Facilitat.CRUD.Infra.Repositories
                     $"({templateId}, '{template.Question.question_one}', " +
                     $"'{template.Question.question_two}')");
 
+                var questionId = connection.Query<int>(
+                    $"SELECT id FROM questions ORDER BY id DESC").FirstOrDefault();
+
+                var  questionIdInsert = connection.Query<Template>("UPDATE templates \n" +
+                    $"SET question_id = {questionId}\n" +
+                    $"WHERE id = {templateId}");
+
+                var questionNameInsert = connection.Query<Template>("UPDATE templates \n" +
+                    $"SET name = '{template.Name}'\n" +
+                    $"WHERE id = {templateId}");
+
                 await connection.CloseAsync();
                 return template;
             }
@@ -95,6 +106,28 @@ namespace Facilitat.CRUD.Infra.Repositories
 
                 await connection.CloseAsync();
                 return true;
+            }
+        }
+
+        public async Task<Template> GetByNameTemplateAsync(string templateName)
+        {
+            using (var connection =
+                    new NpgsqlConnection("User ID=user;Password=pass;Host=localhost;Port=5432;Database=poc-crud;"))
+            {
+                var template = connection.QueryAsync<Template>(
+                    $"SELECT * \n" +
+                    $"FROM templates \n" +
+                    $"WHERE name = '{templateName}'").Result.FirstOrDefault();
+
+                var questions = connection.QueryAsync<Question>(
+                    $"SELECT * \n" +
+                    $"FROM questions \n" +
+                    $"WHERE template_id = {template.Id}").Result.FirstOrDefault();
+
+                template.Question = questions;
+
+                await connection.CloseAsync();
+                return template;
             }
         }
     }

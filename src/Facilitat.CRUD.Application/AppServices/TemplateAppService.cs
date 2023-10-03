@@ -36,29 +36,29 @@ namespace Facilitat.CRUD.Application.AppServices
         {
 			Template template = await _templateService.GetByIdTemplateAsync(templateDtoId);
 
-			TemplateDto templateDto = TemplateFactory.MakeTemplateToTemplateDto(template);
+			TemplateDto templateDto = TemplateFactory.TemplateToTemplateDto(template);
 
             return templateDto;
         }
 
         public async Task<TemplateDto> InsertTemplateAsync(TemplateDto templateDto)
         {
-			var template = TemplateFactory.MakeTemplateDtoToTemplate(templateDto);
+			var template = TemplateFactory.TemplateDtoToTemplate(templateDto);
 
             await _templateService.InsertTemplateAsync(template);
 
-			templateDto = TemplateFactory.MakeTemplateToTemplateDto(template);
+			templateDto = TemplateFactory.TemplateToTemplateDto(template);
 
             return templateDto;
         }
 
         public async Task<TemplateDto> UpdateTemplateAsync(int templateId, TemplateDto templateDto)
         {
-			var template = TemplateFactory.MakeTemplateDtoToTemplate(templateDto);
+			var template = TemplateFactory.TemplateDtoToTemplate(templateDto);
 
 			await _templateService.UpdateTemplateAsync(templateId, template);
 
-            templateDto = TemplateFactory.MakeTemplateToTemplateDto(template);
+            templateDto = TemplateFactory.TemplateToTemplateDto(template);
 
 			return templateDto;
         }
@@ -67,6 +67,15 @@ namespace Facilitat.CRUD.Application.AppServices
         public async Task<bool> DeleteTemplateAsync(int templateDtoId)
         {
             return await _templateService.DeleteTemplateAsync(templateDtoId);
+        }
+
+        public async Task<TemplateDto> GetByNameTemplateAsync(string templateDtoName)
+        {
+            var template = await _templateService.GetByNameTemplateAsync(templateDtoName);
+
+            var templateDto = TemplateFactory.TemplateToTemplateDto(template);
+
+            return templateDto;
         }
     }
 }
