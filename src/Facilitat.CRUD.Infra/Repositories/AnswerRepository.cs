@@ -18,8 +18,8 @@ namespace Facilitat.CRUD.Infra.Repositories
             using (var connection =
                     new NpgsqlConnection("User ID=user;Password=pass;Host=localhost;Port=5432;Database=poc-crud;"))
             {
-                var query = connection.Query<Template>("INSERT INTO answers  (template_id, service_order_code , username, email) \n" +
-                    $"VALUES (1, 5432, '{answer.Username}', '{answer.Email}')");
+                var query = connection.Query<Template>("INSERT INTO Answers  (QuestionId, ServiceOrderId, AnswerText) \n" +
+                    $"VALUES ({answer.QuestionId}, {answer.ServiceOrderId}, '{answer.AnswerText}')");
 
                 await connection.CloseAsync();
                 return answer;
@@ -33,7 +33,7 @@ namespace Facilitat.CRUD.Infra.Repositories
             {
                 List<Answer> answers = new List<Answer>();
                 answers = connection.Query<Answer>("SELECT * \n" +
-                    "FROM answers").ToList();
+                    "FROM Answers").ToList();
 
                 await connection.CloseAsync();
 

@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Facilitat.CRUD.Application.Dtos;
+﻿using Facilitat.CRUD.Application.Dtos;
 using Facilitat.CRUD.Application.Interfaces.Services;
 using Facilitat.CRUD.Application.Sharing.Factories;
 using Facilitat.CRUD.Domain.Aggregates.ServiceOrder.Interfaces.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Facilitat.CRUD.Application.AppServices
 {
@@ -26,7 +27,6 @@ namespace Facilitat.CRUD.Application.AppServices
             serviceOrderDto = ServiceOrderFactory.ServiceOrderToServiceOrderDto(serviceOrder);
 
             return serviceOrderDto;
-            
         }
 
         public async Task<IEnumerable<ServiceOrderDto>> GetAllServiceOrders()
@@ -36,12 +36,22 @@ namespace Facilitat.CRUD.Application.AppServices
             var serviceOrdersDto = serviceOrder
                 .Select(serviceOrder => new ServiceOrderDto()
                 {
-                    id = serviceOrder.id,
-                    service_order_name = serviceOrder.service_order_name,
-                    description = serviceOrder.description
+                    Id = serviceOrder.Id,
+                    DateCreated = serviceOrder.DateCreated, 
+                    ServiceOrderCode = serviceOrder.ServiceOrderCode,
+                    Status = serviceOrder.Status
                 });
 
             return serviceOrdersDto;
+        }
+
+        public async Task<ServiceOrderDto> GetServiceOrderByCodeAsync(string serviceOrderCode)
+        {
+            var serviceOrder = await _serviceOrderService.GetServiceOrderByCodeAsync(serviceOrderCode);
+
+            var serviceOrderDto = ServiceOrderFactory.ServiceOrderToServiceOrderDto(serviceOrder);
+
+            return serviceOrderDto;
         }
     }
 }

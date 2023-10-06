@@ -1,5 +1,8 @@
 ﻿using Facilitat.CRUD.Application.Dtos;
 using Facilitat.CRUD.Domain.Aggregates.Template.Entities;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace Facilitat.CRUD.Application.Sharing.Factories
 {
@@ -11,13 +14,13 @@ namespace Facilitat.CRUD.Application.Sharing.Factories
             {
                 Id = templateDto.Id,
                 Name = templateDto.Name,
-                Question = new Question()
+                Description = templateDto.Description,
+                Questions = templateDto.QuestionsDto.Select(q => new Question
                 {
-                    template_id = templateDto.Id,
-                    question_one = templateDto.QuestionDto.question_one,
-                    question_two = templateDto.QuestionDto.question_two
-                },
-                question_id = templateDto.question_id
+                    Id = q.Id,
+                    QuestionText = q.QuestionText,
+                    TemplateId = q.TemplateId,
+                }).ToList()
             };
 
             return template;
@@ -29,13 +32,13 @@ namespace Facilitat.CRUD.Application.Sharing.Factories
             {
                 Id = template.Id,
                 Name = template.Name,
-                QuestionDto = new QuestionDto()
+                Description = template.Description,
+                QuestionsDto = template.Questions.Select(q => new QuestionDto
                 {
-                    template_id = template.Id,
-                    question_one = template.Question.question_one,
-                    question_two = template.Question.question_two
-                },
-                question_id = template.question_id
+                    Id = q.Id,
+                    QuestionText = q.QuestionText,
+                    TemplateId = q.TemplateId,
+                }).ToList()
             };
 
             return templateDto;

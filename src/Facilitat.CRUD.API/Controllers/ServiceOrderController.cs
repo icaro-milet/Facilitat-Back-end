@@ -4,6 +4,7 @@ using Facilitat.CRUD.Application.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Facilitat.CRUD.Application.Interfaces.Services;
+using System;
 
 namespace Facilitat.CRUD.API.Controllers
 {
@@ -25,6 +26,15 @@ namespace Facilitat.CRUD.API.Controllers
         public async Task<IEnumerable<ServiceOrderDto>> GetAllServiceOrders()
         {
             return await _serviceOrderAppService.GetAllServiceOrders();
+        }
+
+        [HttpGet("GetServiceOrderByCode")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ServiceOrderDto> GetServiceOrderByCode(string serviceOrderCode)
+        {
+            return await _serviceOrderAppService.GetServiceOrderByCodeAsync(serviceOrderCode);
         }
 
         [HttpPost("CreateServiceOrder")]

@@ -26,7 +26,7 @@ namespace Facilitat.CRUD.Infra.Repositories
                     new NpgsqlConnection("User ID=user;Password=pass;Host=localhost;Port=5432;Database=poc-crud;"))
             {
                 List<Template> templates = new List<Template>();
-                templates = connection.Query<Template>("SELECT * FROM templates").ToList();
+                templates = connection.Query<Template>("SELECT * FROM Templates").ToList();
 
                 await connection.CloseAsync();
 
@@ -53,30 +53,22 @@ namespace Facilitat.CRUD.Infra.Repositories
             using (var connection =
                     new NpgsqlConnection("User ID=user;Password=pass;Host=localhost;Port=5432;Database=poc-crud;"))
             {
-                var query = connection.Query<Template>("INSERT INTO templates (name) " +
-                    $"VALUES ('{template.Name}')");
+                var query = connection.Query<Template>("INSERT INTO templates (Name, Description) " +
+                    $"VALUES ('{template.Name}', '{template.Description}')");
 
                 var templateId = connection.Query<int>(
                     $"SELECT id FROM templates ORDER BY id DESC").FirstOrDefault();
 
-                var questionsQuery = connection.Query<Question>("INSERT INTO questions \n" +
-                    "(template_id, question_one, question_two) \n" +
-                    $"VALUES " +
-                    $"({templateId}, '{template.Question.question_one}', " +
-                    $"'{template.Question.question_two}')");
-
-                var questionId = connection.Query<int>(
-                    $"SELECT id FROM questions ORDER BY id DESC").FirstOrDefault();
-
-                var  questionIdInsert = connection.Query<Template>("UPDATE templates \n" +
-                    $"SET question_id = {questionId}\n" +
-                    $"WHERE id = {templateId}");
-
-                var questionNameInsert = connection.Query<Template>("UPDATE templates \n" +
-                    $"SET name = '{template.Name}'\n" +
-                    $"WHERE id = {templateId}");
+                foreach (var question in template.Questions)
+                {
+                    connection.Query<Question>("INSERT INTO Questions \n" +
+                        "(TemplateId, QuestionText) \n" +
+                        $"VALUES \n" +
+                        $"({templateId}, '{question.QuestionText}')");
+                }
 
                 await connection.CloseAsync();
+
                 return template;
             }
         }
@@ -116,15 +108,15 @@ namespace Facilitat.CRUD.Infra.Repositories
             {
                 var template = connection.QueryAsync<Template>(
                     $"SELECT * \n" +
-                    $"FROM templates \n" +
-                    $"WHERE name = '{templateName}'").Result.FirstOrDefault();
+                    $"FROM Templates \n" +
+                    $"WHERE Name = '{templateName}'").Result.FirstOrDefault();
 
                 var questions = connection.QueryAsync<Question>(
                     $"SELECT * \n" +
-                    $"FROM questions \n" +
-                    $"WHERE template_id = {template.Id}").Result.FirstOrDefault();
+                    $"FROM Questions \n" +
+                    $"WHERE TemplateId = {template.Id}").Result.AsList();
 
-                template.Question = questions;
+                template.Questions = questions;
 
                 await connection.CloseAsync();
                 return template;

@@ -10,10 +10,9 @@ namespace Facilitat.CRUD.Application.Sharing.Factories
             return new AnswerDto()
             {
                 Id = answer.Id,
-                template_id = answer.template_id,
-                service_order_code = answer.service_order_code,
-                Username = answer.Username,
-                Email = answer.Email
+                AnswerText = answer.AnswerText, 
+                QuestionId = answer.QuestionId,
+                ServiceOrderId = answer.ServiceOrderId,
             };
         }
 
@@ -22,10 +21,9 @@ namespace Facilitat.CRUD.Application.Sharing.Factories
             return new Answer()
             {
                 Id = answerDto.Id,
-                template_id = answerDto.template_id,
-                service_order_code = answerDto.service_order_code,
-                Username = answerDto.Username,
-                Email = answerDto.Email
+                AnswerText = answerDto.AnswerText,
+                QuestionId = answerDto.QuestionId,
+                ServiceOrderId = answerDto.ServiceOrderId,  
             };
         }
     }

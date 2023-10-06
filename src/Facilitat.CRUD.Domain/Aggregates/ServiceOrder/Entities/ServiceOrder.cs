@@ -1,17 +1,18 @@
-﻿using System.Text.Json.Serialization;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Facilitat.CRUD.Domain.Aggregates.ServiceOrder.Entities
 {
     public class ServiceOrder
 	{
-		public ServiceOrder() { }
+        [Key]
+        public int Id { get; set; }
 
-        [JsonIgnore]
-        public int id { get; set; }
+        public string ServiceOrderCode { get; set; }
 
-        public string service_order_name { get; set; }
+        public DateTime DateCreated { get; set; }
 
-        public string description { get; set; }
+        public string Status { get; set; }
     }
 }
 

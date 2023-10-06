@@ -9,9 +9,10 @@ namespace Facilitat.CRUD.Application.Sharing.Factories
 		{
 			return new ServiceOrderDto()
 			{
-				id = serviceOrder.id,
-                service_order_name = serviceOrder.service_order_name,
-                description = serviceOrder.description
+				Id = serviceOrder.Id,
+                DateCreated = serviceOrder.DateCreated,
+                Status = serviceOrder.Status,
+                ServiceOrderCode = serviceOrder.ServiceOrderCode
 			};
         }
 
@@ -19,9 +20,10 @@ namespace Facilitat.CRUD.Application.Sharing.Factories
         {
             return new ServiceOrder()
             {
-                id = serviceOrderDto.id,
-                service_order_name = serviceOrderDto.service_order_name,
-                description = serviceOrderDto.description
+                Id = serviceOrderDto.Id,
+                DateCreated = serviceOrderDto.DateCreated,
+                Status = serviceOrderDto.Status,
+                ServiceOrderCode = serviceOrderDto.ServiceOrderCode
             };
         }
     }

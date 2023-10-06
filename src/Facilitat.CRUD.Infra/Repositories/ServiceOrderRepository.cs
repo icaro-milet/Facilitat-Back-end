@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
@@ -17,10 +18,10 @@ namespace Facilitat.CRUD.Infra.Repositories
             using (var connection =
                     new NpgsqlConnection("User ID=user;Password=pass;Host=localhost;Port=5432;Database=poc-crud;"))
             {
-                var query = await connection.ExecuteAsync("INSERT INTO service_orders\n" +
-                    $"(service_order_name, description)\n" +
+                var query = await connection.ExecuteAsync("INSERT INTO ServiceOrders\n" +
+                    $"(ServiceOrderCode, DateCreated, Status)\n" +
                     $"VALUES \n" +
-                    $"('{serviceOrder.service_order_name}','{serviceOrder.description}')");
+                    $"('{serviceOrder.ServiceOrderCode}', '{serviceOrder.DateCreated}', '{serviceOrder.Status}')");
 
                 await connection.CloseAsync();
 
@@ -41,6 +42,20 @@ namespace Facilitat.CRUD.Infra.Repositories
                 return serviceOrders;
             }
 
+        }
+
+        public async Task<ServiceOrder> GetServiceOrderByCodeAsync(string serviceOrderCode)
+        {
+            using (var connection =
+                    new NpgsqlConnection("User ID=user;Password=pass;Host=localhost;Port=5432;Database=poc-crud;"))
+            {
+                var serviceOrders = connection.Query<ServiceOrder>("SELECT * FROM ServiceOrders\n" +
+                    $"WHERE ServiceOrderCode = '{serviceOrderCode}'").FirstOrDefault();
+
+                await connection.CloseAsync();
+
+                return serviceOrders;
+            }
         }
     }
 }

@@ -1,23 +1,20 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Facilitat.CRUD.Domain.Aggregates.Answer.Entities
 {
     public class Answer
-	{
-		public Answer() { }
-
-        [JsonIgnore]
+    {
+        [Key]
         public int Id { get; set; }
 
-        [JsonIgnore]
-        public int template_id { get; set; }
+        [ForeignKey("Questions")]
+        public int QuestionId { get; set; }
 
-        [JsonIgnore]
-        public int service_order_code { get; set; }
+        [ForeignKey("ServiceOrders")]
+        public int ServiceOrderId { get; set; }
 
-        public string Username { get; set; }
-
-        public string Email { get; set; }
+        public string AnswerText { get; set; }
     }
 }
 

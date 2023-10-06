@@ -9,12 +9,9 @@ namespace Facilitat.CRUD.Application.Sharing.Factories
 		{
 			var questionDto = new QuestionDto()
 			{
-				id = question.id,
-                template_id = question.template_id,
-                question_one_id = question.question_one_id,
-                question_one = question.question_one,
-                question_two_id = question.question_two_id,
-                question_two = question.question_two
+				Id = question.Id,
+                QuestionText = question.QuestionText,   
+                TemplateId = question.TemplateId,
             };
 
 			return questionDto;
@@ -24,12 +21,9 @@ namespace Facilitat.CRUD.Application.Sharing.Factories
         {
             var question = new Question()
             {
-                id = questionDto.id,
-                template_id = questionDto.template_id,
-                question_one_id = questionDto.question_one_id,
-                question_one = questionDto.question_one,
-                question_two_id = questionDto.question_two_id,
-                question_two = questionDto.question_two
+                Id = questionDto.Id,
+                QuestionText = questionDto.QuestionText,
+                TemplateId = questionDto.TemplateId,
             };
 
             return question;

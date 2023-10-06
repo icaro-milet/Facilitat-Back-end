@@ -36,10 +36,9 @@ namespace Facilitat.CRUD.Application.AppServices
                 .Select(answers => new AnswerDto()
                 {
                     Id = answers.Id,
-                    template_id = answers.template_id,
-                    service_order_code = answers.service_order_code,
-                    Username = answers.Username,
-                    Email = answers.Email
+                    AnswerText = answers.AnswerText,    
+                    QuestionId = answers.QuestionId,
+                    ServiceOrderId = answers.ServiceOrderId
                 });
 
             return answersDto;
