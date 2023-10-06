@@ -22,9 +22,9 @@ namespace Facilitat.CRUD.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IEnumerable<AnswerDto>> GetAllAnswers()
+        public async Task<IEnumerable<AnswerDto>> GetAllAnswersByTemplate(string template)
         {
-            return await _answerAppService.GetAllAnswers();
+            return await _answerAppService.GetAllAnswersByTemplate(template);
         }
 
         [HttpPost("CreateAnswer")]

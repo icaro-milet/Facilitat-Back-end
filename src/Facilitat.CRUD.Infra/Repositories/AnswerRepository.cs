@@ -26,14 +26,16 @@ namespace Facilitat.CRUD.Infra.Repositories
             }
         }
 
-        public async Task<IEnumerable<Answer>> GetAllAnswers()
+        public async Task<IEnumerable<Answer>> GetAllAnswersByTemplate(string template)
         {
             using (var connection =
                     new NpgsqlConnection("User ID=user;Password=pass;Host=localhost;Port=5432;Database=poc-crud;"))
             {
                 List<Answer> answers = new List<Answer>();
-                answers = connection.Query<Answer>("SELECT * \n" +
-                    "FROM Answers").ToList();
+                answers = connection.Query<Answer>("select s.serviceordercode, q.questiontext, a.answertext " +
+                    "from answers a " +
+                    "inner join questions q on q.id = a.questionid " +
+                    "inner join serviceorders s on s.id = a.serviceorderid ").ToList();
 
                 await connection.CloseAsync();
 

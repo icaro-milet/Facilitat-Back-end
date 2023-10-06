@@ -19,9 +19,9 @@ namespace Facilitat.CRUD.Domain.Aggregates.Answer.Services
             return await _answerRepository.CreateAnswer(answer);
         }
 
-        public async Task<IEnumerable<Entities.Answer>> GetAllAnswers()
+        public async Task<IEnumerable<Entities.Answer>> GetAllAnswersByTemplate(string template)
         {
-            return await _answerRepository.GetAllAnswers();
+            return await _answerRepository.GetAllAnswersByTemplate(template);
         }
     }
 }

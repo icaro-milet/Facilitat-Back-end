@@ -28,9 +28,9 @@ namespace Facilitat.CRUD.Application.AppServices
             return answerDto;
         }
 
-        public async Task<IEnumerable<AnswerDto>> GetAllAnswers()
+        public async Task<IEnumerable<AnswerDto>> GetAllAnswersByTemplate(string template)
         {
-            var answers = await _answerService.GetAllAnswers();
+            var answers = await _answerService.GetAllAnswersByTemplate(template);
 
             var answersDto = answers
                 .Select(answers => new AnswerDto()
