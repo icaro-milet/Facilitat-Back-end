@@ -5,7 +5,7 @@ namespace Facilitat.CRUD.Domain.Aggregates.Answer.Interfaces.Services
 {
     public interface IAnswerService
 	{
-        Task<IEnumerable<Entities.Answer>> GetAllAnswersByTemplate(string template);
+        Task<IEnumerable<Entities.Answer>> GetAllAnswersByTemplateId(int templateId);
         Task<Entities.Answer> CreateAnswer(Entities.Answer answer);
     }
 }

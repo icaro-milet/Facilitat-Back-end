@@ -5,7 +5,6 @@ namespace Facilitat.CRUD.Application.Dtos
 {
     public class TemplateDto
     {
-        [JsonIgnore]
         public int Id { get; set; }
 
         public string Name { get; set; }

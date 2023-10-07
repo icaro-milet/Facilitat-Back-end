@@ -18,13 +18,13 @@ namespace Facilitat.CRUD.API.Controllers
             _answerAppService = answerAppService;
         }
 
-        [HttpGet("GetAllAnswers")]
+        [HttpGet("GetAllAnswersByTemplateId")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IEnumerable<AnswerDto>> GetAllAnswersByTemplate(string template)
+        public async Task<IEnumerable<AnswerDto>> GetAllAnswersByTemplateId(int templateId)
         {
-            return await _answerAppService.GetAllAnswersByTemplate(template);
+            return await _answerAppService.GetAllAnswersByTemplateId(templateId);
         }
 
         [HttpPost("CreateAnswer")]

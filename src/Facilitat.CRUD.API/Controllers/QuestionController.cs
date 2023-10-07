@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Facilitat.CRUD.Application.Dtos;
 using Facilitat.CRUD.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
@@ -21,7 +22,7 @@ namespace Facilitat.CRUD.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<QuestionDto> GetQuestionsToFormByIdAsync(int templateId)
+        public async Task<IEnumerable<QuestionDto>> GetQuestionsToFormByIdAsync(int templateId)
         {
             return await _questionAppService.GetQuestionsToFormByIdAsync(templateId);
         }

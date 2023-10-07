@@ -43,6 +43,13 @@ namespace Facilitat.CRUD.Infra.Repositories
                 var template = connection.Query<Template>(
                     $"SELECT * FROM templates WHERE id = {templateId}").FirstOrDefault();
 
+                var questions = connection.QueryAsync<Question>(
+                    $"SELECT * \n" +
+                    $"FROM Questions \n" +
+                    $"WHERE TemplateId = {template.Id}").Result.AsList();
+
+                template.Questions = questions;
+
                 await connection.CloseAsync();
                 return template;
             }

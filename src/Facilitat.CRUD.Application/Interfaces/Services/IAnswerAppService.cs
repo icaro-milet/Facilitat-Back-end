@@ -6,7 +6,7 @@ namespace Facilitat.CRUD.Application.Interfaces.Services
 {
     public interface IAnswerAppService
 	{
-        Task<IEnumerable<AnswerDto>> GetAllAnswersByTemplate(string template);
+        Task<IEnumerable<AnswerDto>> GetAllAnswersByTemplateId(int templateId);
         Task<AnswerDto> CreateAnswer(AnswerDto answerDto);
     }
 }

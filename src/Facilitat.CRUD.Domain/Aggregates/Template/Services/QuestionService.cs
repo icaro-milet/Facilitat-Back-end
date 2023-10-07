@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Facilitat.CRUD.Domain.Aggregates.Template.Entities;
 using Facilitat.CRUD.Domain.Aggregates.Template.Interfaces.Repository;
 using Facilitat.CRUD.Domain.Aggregates.Template.Interfaces.Services;
@@ -14,7 +15,7 @@ namespace Facilitat.CRUD.Domain.Aggregates.Template.Services
             _questionRepository = questionRepository;
         }
 
-        public async Task<Question> GetQuestionsToFormByIdAsync(int templateId)
+        public async Task<IEnumerable<Entities.Question>> GetQuestionsToFormByIdAsync(int templateId)
         {
             return await _questionRepository.GetQuestionsToFormByIdAsync(templateId);
         }

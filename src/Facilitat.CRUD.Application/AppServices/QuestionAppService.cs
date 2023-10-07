@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Facilitat.CRUD.Application.Dtos;
 using Facilitat.CRUD.Application.Interfaces.Services;
 using Facilitat.CRUD.Application.Sharing.Factories;
@@ -15,11 +17,11 @@ namespace Facilitat.CRUD.Application.AppServices
             _questionService = questionService;
         }
 
-        public async Task<QuestionDto> GetQuestionsToFormByIdAsync(int templateId)
+        public async Task<IEnumerable<QuestionDto>> GetQuestionsToFormByIdAsync(int templateId)
         {
             var question = await _questionService.GetQuestionsToFormByIdAsync(templateId);
 
-            var questionDto = QuestionFactory.QuestionToQuestionDto(question);
+            var questionDto = QuestionFactory.QuestionToQuestionDto(question.ToList());
 
             return questionDto;
 
