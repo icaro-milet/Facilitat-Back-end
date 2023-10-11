@@ -40,7 +40,6 @@ namespace Facilitat.CRUD.Infra.Repositories
                 _dbConnection.Close();
 
                 return answers;
-            }
         }
     }
 }

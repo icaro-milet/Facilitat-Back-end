@@ -3,7 +3,6 @@ using Facilitat.CRUD.Domain.Aggregates.ServiceOrder.Entities;
 using Facilitat.CRUD.Domain.Aggregates.ServiceOrder.Interfaces.Repository;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -28,34 +27,26 @@ namespace Facilitat.CRUD.Infra.Repositories
                  _dbConnection.Close();
 
                 return serviceOrder;
-            }
         }
+
+        public async Task<ServiceOrder> GetServiceOrderByCodeAsync(string serviceOrderCode)
+        {
+            var serviceOrders = _dbConnection.Query<ServiceOrder>("SELECT * FROM ServiceOrders\n" +
+                $"WHERE ServiceOrderCode = '{serviceOrderCode}'").FirstOrDefault();
+
+            _dbConnection.Close();
+
+            return serviceOrders;
+        }
+
 
         public async Task<IEnumerable<ServiceOrder>> GetAllServiceOrders()
         {
             List<ServiceOrder> serviceOrders = new List<ServiceOrder>();
 
-
-            //serviceOrders = await _dbConnection.Query<SeviceOrder>("SELECT * FROM service_orders").ToList();
-        
-
-            //_dbConnection.Close();
+            serviceOrders = _dbConnection.Query<ServiceOrder>("SELECT * FROM ServiceOrders").ToList();
 
             return serviceOrders;
-        }
-
-        public async Task<ServiceOrder> GetServiceOrderByCodeAsync(string serviceOrderCode)
-        {
-            using (var connection =
-                    new NpgsqlConnection("User ID=user;Password=pass;Host=localhost;Port=5432;Database=poc-crud;"))
-            {
-                var serviceOrders = connection.Query<ServiceOrder>("SELECT * FROM ServiceOrders\n" +
-                    $"WHERE ServiceOrderCode = '{serviceOrderCode}'").FirstOrDefault();
-
-                await connection.CloseAsync();
-
-                return serviceOrders;
-            }
         }
     }
 }

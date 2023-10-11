@@ -19,15 +19,14 @@ namespace Facilitat.CRUD.Infra.Repositories
 
         public async Task<IEnumerable<Question>> GetQuestionsToFormByIdAsync(int templateId)
         {
-                var question = _dbConnection.QueryAsync<Question>("SELECT * FROM Questions q \n" +
-                    "INNER JOIN Templates t \n" +
+            var question = _dbConnection.QueryAsync<Question>("SELECT * FROM Questions q \n" +
+                    $"INNER JOIN Templates t \n" +
                     $"ON q.TemplateId = t.Id \n" +
                     $"WHERE q.TemplateId = {templateId}").Result.ToList();
 
-                 _dbConnection.Close();
+            _dbConnection.Close();
 
-                return  question;
-            }
+            return  question;
         }
     }
 }
