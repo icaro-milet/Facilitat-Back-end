@@ -26,7 +26,6 @@
     <None Remove="Aggregates\Answer\Interfaces\Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Aggregates\" />
     <Folder Include="Aggregates\Template\" />
     <Folder Include="Aggregates\Template\Entities\" />
     <Folder Include="Aggregates\Template\Services\" />

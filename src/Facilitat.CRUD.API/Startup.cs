@@ -11,6 +11,9 @@ using Facilitat.CRUD.Domain.Aggregates.ServiceOrder.Services;
 using Facilitat.CRUD.Domain.Aggregates.Template.Interfaces.Repository;
 using Facilitat.CRUD.Domain.Aggregates.Template.Interfaces.Services;
 using Facilitat.CRUD.Domain.Aggregates.Template.Services;
+using Facilitat.CRUD.Domain.Aggregates.User.Interfaces.Repository;
+using Facilitat.CRUD.Domain.Aggregates.User.Interfaces.Services;
+using Facilitat.CRUD.Domain.Aggregates.User.Services;
 using Facilitat.CRUD.Infra.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -47,6 +50,10 @@ namespace Facilitat.CRUD.API
             services.AddTransient<IQuestionAppService, QuestionAppService>();
             services.AddTransient<IQuestionService, QuestionService>();
             services.AddTransient<IQuestionRepository, QuestionRepository>();
+
+            services.AddTransient<IUserAppService, UserAppService>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IUserRepository, UserRepository>();
 
             services.AddSingleton<IConfiguration>(Configuration);
             string connectionString = Configuration.GetConnectionString("DefaultConnection");
