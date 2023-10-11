@@ -77,11 +77,10 @@ GO
 
 CREATE TABLE Users (
     Id INT IDENTITY(1,1) PRIMARY KEY,
-    ServiceOrderId INT,
-    Name Varchar(255),
+    FirstName Varchar(255),
+    LastName Varchar(255),
     Email Varchar(255),
-    Password Varchar(255),
-    FOREIGN KEY (ServiceOrderId) REFERENCES ServiceOrders(Id)
+    Birthday DATE
 )
 
 GO
