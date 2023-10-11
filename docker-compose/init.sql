@@ -33,4 +33,71 @@ CREATE TABLE IF NOT EXISTS Answers (
     FOREIGN KEY (ServiceOrderId) REFERENCES ServiceOrders(Id)
 );
 
+---
+
+CREATE TABLE IF NOT EXISTS Users (
+    Id SERIAL PRIMARY KEY,
+    ServiceOrderId INT,
+    Name Varchar(255),
+    Email Varchar(255),
+    Password Varchar(255),
+    FOREIGN KEY (ServiceOrderId) REFERENCES ServiceOrders(Id)
+)
+
+------------------------------------------------------------------
+
+-- SQL Server --
+
+CREATE TABLE Templates (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Name VARCHAR(255),
+    Description Varchar(255)
+);
+GO
+---
+
+CREATE TABLE Questions (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    TemplateId INT,
+    QuestionText Varchar(255),
+    FOREIGN KEY (TemplateId) REFERENCES Templates(Id)
+);
+GO
+---
+
+CREATE TABLE ServiceOrders (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    ServiceOrderCode VARCHAR(255),
+    DateCreated DATE,
+    Status VARCHAR(255)
+);
+GO
+---
+
+
+CREATE TABLE Users (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    ServiceOrderId INT,
+    Name Varchar(255),
+    Email Varchar(255),
+    Password Varchar(255),
+    FOREIGN KEY (ServiceOrderId) REFERENCES ServiceOrders(Id)
+)
+
+GO
+CREATE TABLE Answers (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    QuestionId INT,
+    ServiceOrderId INT,
+    UserId INT,
+    AnswerText Varchar(255),
+    FOREIGN KEY (QuestionId) REFERENCES Questions(Id),
+    FOREIGN KEY (ServiceOrderId) REFERENCES ServiceOrders(Id),
+    FOREIGN KEY (UserId) REFERENCES Users(Id)
+);
+GO
+---
+
+
+
 

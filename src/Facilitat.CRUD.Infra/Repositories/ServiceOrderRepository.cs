@@ -1,29 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Dapper;
+﻿using Dapper;
 using Facilitat.CRUD.Domain.Aggregates.ServiceOrder.Entities;
 using Facilitat.CRUD.Domain.Aggregates.ServiceOrder.Interfaces.Repository;
-using Npgsql;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Facilitat.CRUD.Infra.Repositories
 {
     public class ServiceOrderRepository : IServiceOrderRepository
 	{
-		public ServiceOrderRepository() { }
+        private readonly IDbConnection _dbConnection;
+
+        public ServiceOrderRepository(IDbConnection dbConnection)
+        {
+            _dbConnection = dbConnection;
+        }
 
         public async Task<ServiceOrder> CreateServiceOrder(ServiceOrder serviceOrder)
         {
-            using (var connection =
-                    new NpgsqlConnection("User ID=user;Password=pass;Host=localhost;Port=5432;Database=poc-crud;"))
-            {
-                var query = await connection.ExecuteAsync("INSERT INTO ServiceOrders\n" +
+                var query = await _dbConnection.ExecuteAsync("INSERT INTO ServiceOrders\n" +
                     $"(ServiceOrderCode, DateCreated, Status)\n" +
                     $"VALUES \n" +
                     $"('{serviceOrder.ServiceOrderCode}', '{serviceOrder.DateCreated}', '{serviceOrder.Status}')");
 
-                await connection.CloseAsync();
+                 _dbConnection.Close();
 
                 return serviceOrder;
             }
@@ -31,17 +33,15 @@ namespace Facilitat.CRUD.Infra.Repositories
 
         public async Task<IEnumerable<ServiceOrder>> GetAllServiceOrders()
         {
-            using (var connection =
-                    new NpgsqlConnection("User ID=user;Password=pass;Host=localhost;Port=5432;Database=poc-crud;"))
-            {
-                List<ServiceOrder> serviceOrders = new List<ServiceOrder>();
-                serviceOrders = connection.Query<ServiceOrder>("SELECT * FROM service_orders").ToList();
+            List<ServiceOrder> serviceOrders = new List<ServiceOrder>();
 
-                await connection.CloseAsync();
 
-                return serviceOrders;
-            }
+            //serviceOrders = await _dbConnection.Query<SeviceOrder>("SELECT * FROM service_orders").ToList();
+        
 
+            //_dbConnection.Close();
+
+            return serviceOrders;
         }
 
         public async Task<ServiceOrder> GetServiceOrderByCodeAsync(string serviceOrderCode)

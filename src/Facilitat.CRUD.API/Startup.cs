@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Data.SqlClient;
 using Facilitat.CRUD.Application.AppServices;
 using Facilitat.CRUD.Application.Interfaces.Services;
 using Facilitat.CRUD.Domain.Aggregates.Answer.Interfaces.Repository;
@@ -16,7 +17,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Npgsql;
 
 namespace Facilitat.CRUD.API
 {
@@ -28,8 +28,6 @@ namespace Facilitat.CRUD.API
         }
 
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
@@ -50,7 +48,10 @@ namespace Facilitat.CRUD.API
             services.AddTransient<IQuestionService, QuestionService>();
             services.AddTransient<IQuestionRepository, QuestionRepository>();
 
-            services.AddTransient<IDbConnection>(db => new NpgsqlConnection(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddSingleton<IConfiguration>(Configuration);
+            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddTransient<IDbConnection>((sp) => new SqlConnection(connectionString));
+
             services.Configure<StaticFileOptions>(options =>
             {
                 options.DefaultContentType = "application/javascript";

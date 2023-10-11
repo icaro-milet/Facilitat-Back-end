@@ -1,28 +1,30 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
 using Facilitat.CRUD.Domain.Aggregates.Template.Entities;
 using Facilitat.CRUD.Domain.Aggregates.Template.Interfaces.Repository;
-using Npgsql;
 
 namespace Facilitat.CRUD.Infra.Repositories
 {
     public class QuestionRepository : IQuestionRepository
     {
-        public QuestionRepository() { }
+        private readonly IDbConnection _dbConnection;
+
+        public QuestionRepository(IDbConnection dbConnection)
+        {
+            _dbConnection = dbConnection;
+        }
 
         public async Task<IEnumerable<Question>> GetQuestionsToFormByIdAsync(int templateId)
         {
-            using (var connection =
-                    new NpgsqlConnection("User ID=user;Password=pass;Host=localhost;Port=5432;Database=poc-crud;"))
-            {
-                var question = connection.QueryAsync<Question>("SELECT * FROM Questions q \n" +
+                var question = _dbConnection.QueryAsync<Question>("SELECT * FROM Questions q \n" +
                     "INNER JOIN Templates t \n" +
                     $"ON q.TemplateId = t.Id \n" +
                     $"WHERE q.TemplateId = {templateId}").Result.ToList();
 
-                await connection.CloseAsync();
+                 _dbConnection.Close();
 
                 return  question;
             }
