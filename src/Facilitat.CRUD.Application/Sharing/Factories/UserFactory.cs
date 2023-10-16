@@ -12,8 +12,7 @@ namespace Facilitat.CRUD.Application.Sharing.Factories
                 Id = userDto.Id,
                 FirstName = userDto.FirstName,
                 LastName = userDto.LastName,
-                Email = userDto.Email,
-                Birthday = userDto.Birthday
+                Email = userDto.Email
             };
         }
 
@@ -24,8 +23,7 @@ namespace Facilitat.CRUD.Application.Sharing.Factories
                 Id = user.Id,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                Email = user.Email,
-                Birthday = user.Birthday
+                Email = user.Email
             };
         }
     }

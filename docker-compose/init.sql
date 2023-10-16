@@ -79,8 +79,7 @@ CREATE TABLE Users (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     FirstName Varchar(255),
     LastName Varchar(255),
-    Email Varchar(255),
-    Birthday DATE
+    Email Varchar(255)
 )
 
 GO

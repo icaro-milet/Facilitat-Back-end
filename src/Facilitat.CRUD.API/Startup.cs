@@ -5,6 +5,9 @@ using Facilitat.CRUD.Application.Interfaces.Services;
 using Facilitat.CRUD.Domain.Aggregates.Answer.Interfaces.Repository;
 using Facilitat.CRUD.Domain.Aggregates.Answer.Interfaces.Services;
 using Facilitat.CRUD.Domain.Aggregates.Answer.Services;
+using Facilitat.CRUD.Domain.Aggregates.Appointment.Interfaces.Repository;
+using Facilitat.CRUD.Domain.Aggregates.Appointment.Interfaces.Services;
+using Facilitat.CRUD.Domain.Aggregates.Appointment.Services;
 using Facilitat.CRUD.Domain.Aggregates.ServiceOrder.Interfaces.Repository;
 using Facilitat.CRUD.Domain.Aggregates.ServiceOrder.Interfaces.Services;
 using Facilitat.CRUD.Domain.Aggregates.ServiceOrder.Services;
@@ -54,6 +57,10 @@ namespace Facilitat.CRUD.API
             services.AddTransient<IUserAppService, UserAppService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IUserRepository, UserRepository>();
+
+            services.AddTransient<IAppointmentAppService, AppointmentAppService>();
+            services.AddTransient<IAppointmentService, AppointmentService>();
+            services.AddTransient<IAppointmentRepository, AppointmentRepository>();
 
             services.AddSingleton<IConfiguration>(Configuration);
             string connectionString = Configuration.GetConnectionString("DefaultConnection");

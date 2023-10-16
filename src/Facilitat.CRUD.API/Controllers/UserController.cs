@@ -2,6 +2,7 @@
 using Facilitat.CRUD.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Facilitat.CRUD.API.Controllers
@@ -17,13 +18,22 @@ namespace Facilitat.CRUD.API.Controllers
             _userAppService = userAppService;
         }
 
-        [HttpPost("CreateTemplate")]
+        [HttpPost("CreateUser")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<UserDto> CreateUser([FromBody] UserDto userDto)
         {
             return await _userAppService.CreateUser(userDto);
+        }
+
+        [HttpGet("GetAllUsers")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IEnumerable<UserDto>> GetAllUsersAsync()
+        {
+            return await _userAppService.GetAllUsersAsync();
         }
     }
 }

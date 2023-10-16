@@ -1,5 +1,6 @@
 ﻿using Facilitat.CRUD.Domain.Aggregates.User.Interfaces.Repository;
 using Facilitat.CRUD.Domain.Aggregates.User.Interfaces.Services;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Facilitat.CRUD.Domain.Aggregates.User.Services
@@ -15,6 +16,11 @@ namespace Facilitat.CRUD.Domain.Aggregates.User.Services
         public async Task<Entities.User> CreateUser(Entities.User user)
         {
             return await _userRepository.CreateUser(user);
+        }
+
+        public async Task<IEnumerable<Entities.User>> GetAllUsersAsync()
+        {
+            return await _userRepository.GetAllUsersAsync();
         }
     }
 }
