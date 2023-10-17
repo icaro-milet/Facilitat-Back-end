@@ -17,9 +17,9 @@ namespace Facilitat.CRUD.Infra.Repositories
         public async Task<int> CreateAppointmentAsync(Appointment appointmentDto)
         {
             var sql = $@"INSERT INTO Appointments 
-                         (UserId, DateStart, DateEnd, Title, Description)
+                         (UserId, DateStart, DateEnd, Title)
                          VALUES
-                         (@userId, @dateStart, @dateEnd, @title, @description)";
+                         (@userId, @dateStart, @dateEnd, @title)";
 
             return await _dbConnection.ExecuteAsync(
             sql,
@@ -28,8 +28,7 @@ namespace Facilitat.CRUD.Infra.Repositories
                     userId = appointmentDto.UserId,
                     dateStart = appointmentDto.DateStart,
                     dateEnd = appointmentDto.DateEnd,
-                    title = appointmentDto.Title,
-                    description = appointmentDto.Description
+                    title = appointmentDto.Title
                 });
         }
     }

@@ -18,5 +18,8 @@ namespace Facilitat.CRUD.Application.Dtos
         [JsonPropertyName("Email")]
         public string Email { get; set; }
 
+        [JsonPropertyName("Document")]
+        public string Document { get; set; }
+
     }
 }

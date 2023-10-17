@@ -13,7 +13,6 @@ namespace Facilitat.CRUD.Application.Sharing.Factories
                 UserId = appointmentDto.UserId,
                 DateStart = appointmentDto.DateStart,
                 DateEnd = appointmentDto.DateEnd,
-                Description = appointmentDto.Description,
                 Title = appointmentDto.Title
             };
 
@@ -28,7 +27,6 @@ namespace Facilitat.CRUD.Application.Sharing.Factories
                 UserId = appointment.UserId,
                 DateStart = appointment.DateStart,
                 DateEnd = appointment.DateEnd,
-                Description = appointment.Description,
                 Title = appointment.Title
             };
 

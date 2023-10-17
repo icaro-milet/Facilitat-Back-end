@@ -11,6 +11,5 @@ namespace Facilitat.CRUD.Application.Dtos
         public DateTime DateStart { get; set; }
         public DateTime DateEnd { get; set; }
         public string Title { get; set; }
-        public string Description { get; set; }
     }
 }

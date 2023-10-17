@@ -79,7 +79,8 @@ CREATE TABLE Users (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     FirstName Varchar(255),
     LastName Varchar(255),
-    Email Varchar(255)
+    Email Varchar(255),
+    Document Varchar(255)
 )
 
 GO
@@ -95,6 +96,15 @@ CREATE TABLE Answers (
 );
 GO
 ---
+
+CREATE TABLE Appointments (
+	Id INT IDENTITY(1,1) PRIMARY KEY,
+	Title VARCHAR(255),
+	DateStart DATE,
+	DateEnd DATE,
+	UserId INT,
+	FOREIGN KEY (UserId) REFERENCES Users(Id)
+);
 
 
 

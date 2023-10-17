@@ -21,7 +21,7 @@ namespace Facilitat.CRUD.API.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<int> CreateAppointmentAsync([FromBody] AppointmentDto appointmentDto)
+        public async Task<int> CreateAppointmentAsync(AppointmentDto appointmentDto)
         {
             return await _appointmentAppService.CreateAppointmentAsync(appointmentDto);
         }

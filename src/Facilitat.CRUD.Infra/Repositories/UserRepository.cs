@@ -17,8 +17,8 @@ namespace Facilitat.CRUD.Infra.Repositories
         }
         public async Task<User> CreateUser(User user)
         {
-            return _dbConnection.Query<User>("INSERT INTO Users (FirstName, LastName, Email) \n" +
-                $"VALUES ('{user.FirstName}', '{user.LastName}', '{user.Email}')").AsList<User>().FirstOrDefault();
+            return _dbConnection.Query<User>("INSERT INTO Users (FirstName, LastName, Email, Document) \n" +
+                $"VALUES ('{user.FirstName}', '{user.LastName}', '{user.Email}', '{user.Document}')").AsList<User>().FirstOrDefault();
         }
 
         public async Task<IEnumerable<User>> GetAllUsersAsync()
